@@ -1,7 +1,7 @@
 const COLORS = {
-  Warning: { color: 'var(--warning)', bg: 'var(--warning-bg)', icon: '⚠' },
-  Fault:   { color: 'var(--fault)',   bg: 'var(--fault-bg)',   icon: '✕' },
-  Normal:  { color: 'var(--normal)',  bg: 'var(--normal-bg)',  icon: '✓' },
+  Warning: { color: 'var(--warning)', bg: 'var(--warning-bg)' },
+  Fault:   { color: 'var(--fault)',   bg: 'var(--fault-bg)'   },
+  Normal:  { color: 'var(--normal)',  bg: 'var(--normal-bg)'  },
 }
 
 function formatTime(ts) {
@@ -35,10 +35,9 @@ export default function AlertLog({ alerts }) {
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, maxHeight: 280, overflowY: 'auto' }}>
           {/* Header */}
-          <div style={{ display: 'grid', gridTemplateColumns: '28px 140px 80px 1fr 80px 80px 80px 80px', gap: 12,
+          <div style={{ display: 'grid', gridTemplateColumns: '140px 80px 1fr 80px 80px 80px 80px', gap: 12,
             padding: '0 12px 8px', borderBottom: '1px solid var(--border)',
             fontSize: 10, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: 1, fontFamily: 'var(--mono)' }}>
-            <span></span>
             <span>Timestamp</span>
             <span>Type</span>
             <span>Reason</span>
@@ -53,14 +52,13 @@ export default function AlertLog({ alerts }) {
             return (
               <div key={alert.id} style={{
                 display: 'grid',
-                gridTemplateColumns: '28px 140px 80px 1fr 80px 80px 80px 80px',
+                gridTemplateColumns: '140px 80px 1fr 80px 80px 80px 80px',
                 gap: 12, padding: '10px 12px',
                 background: c.bg, borderRadius: 8,
                 border: `1px solid ${c.color}30`,
                 alignItems: 'center',
                 fontSize: 12,
               }}>
-                <span style={{ fontSize: 14 }}>{c.icon}</span>
                 <span style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--muted)' }}>
                   {formatTime(alert.timestamp)}
                 </span>
