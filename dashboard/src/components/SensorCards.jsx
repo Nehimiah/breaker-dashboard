@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 
 const SENSORS = [
-  { key: 'voltage',     label: 'Voltage',     unit: 'V',   icon: '⚡', min: 180, max: 260, decimals: 1 },
-  { key: 'current',     label: 'Current',     unit: 'A',   icon: '〜', min: 0,   max: 20,  decimals: 1 },
-  { key: 'temperature', label: 'Temperature', unit: '°C',  icon: '🌡', min: 0,   max: 85,  decimals: 1 },
-  { key: 'vibration',   label: 'Vibration',   unit: '',    icon: '📳', min: 0,   max: 1,   decimals: 0 },
+  { key: 'voltage',     label: 'Voltage',     unit: 'V',  min: 180, max: 260, decimals: 1 },
+  { key: 'current',     label: 'Current',     unit: 'A',  min: 0,   max: 20,  decimals: 1 },
+  { key: 'temperature', label: 'Temperature', unit: '°C', min: 0,   max: 85,  decimals: 1 },
+  { key: 'vibration',   label: 'Vibration',   unit: '',   min: 0,   max: 1,   decimals: 0 },
 ]
 
 function getBar(value, min, max) {
@@ -47,7 +47,7 @@ export default function SensorCards({ lastReading }) {
         Live Sensor Readings
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14 }}>
-        {SENSORS.map(({ key, label, unit, icon, min, max, decimals }) => {
+        {SENSORS.map(({ key, label, unit, min, max, decimals }) => {
           const value = lastReading?.[key]
           const pct = value != null ? getBar(value, min, max) : 0
           const barColor = value != null ? getBarColor(pct, key) : 'var(--border2)'
@@ -76,7 +76,6 @@ export default function SensorCards({ lastReading }) {
                     <span style={{ fontSize: 13, fontWeight: 400, marginLeft: 4, color: 'var(--muted)' }}>{unit}</span>
                   </div>
                 </div>
-                <span style={{ fontSize: 20 }}>{icon}</span>
               </div>
 
               {/* Bar */}
