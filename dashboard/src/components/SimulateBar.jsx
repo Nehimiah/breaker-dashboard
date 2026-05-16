@@ -1,11 +1,11 @@
 import { useState } from 'react'
 
 const SCENARIOS = [
-  { key: 'normal',            label: 'Normal',         color: 'var(--normal)',  icon: '✓' },
-  { key: 'warning',           label: 'Warning',        color: 'var(--warning)', icon: '⚠' },
-  { key: 'fault_overcurrent', label: 'Overcurrent',    color: 'var(--fault)',   icon: '✕' },
-  { key: 'fault_overvoltage', label: 'Overvoltage',    color: 'var(--fault)',   icon: '✕' },
-  { key: 'fault_overtemp',    label: 'Overtemperature',color: 'var(--fault)',   icon: '✕' },
+  { key: 'normal',            label: 'Normal',          color: 'var(--normal)'  },
+  { key: 'warning',           label: 'Warning',         color: 'var(--warning)' },
+  { key: 'fault_overcurrent', label: 'Overcurrent',     color: 'var(--fault)'   },
+  { key: 'fault_overvoltage', label: 'Overvoltage',     color: 'var(--fault)'   },
+  { key: 'fault_overtemp',    label: 'Overtemperature', color: 'var(--fault)'   },
 ]
 
 export default function SimulateBar({ simulate, refetch }) {
@@ -31,10 +31,10 @@ export default function SimulateBar({ simulate, refetch }) {
       display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap',
     }}>
       <div style={{ fontSize: 11, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: 1, fontFamily: 'var(--mono)', whiteSpace: 'nowrap' }}>
-        🧪 Simulate Reading
+        Simulate Reading
       </div>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-        {SCENARIOS.map(({ key, label, color, icon }) => {
+        {SCENARIOS.map(({ key, label, color }) => {
           const isLoading = loading === key
           const fired = lastFired === key
           return (
@@ -48,12 +48,10 @@ export default function SimulateBar({ simulate, refetch }) {
               display: 'flex', alignItems: 'center', gap: 6,
               fontFamily: 'var(--sans)',
             }}>
-              {isLoading ? (
+              {isLoading && (
                 <span style={{ display: 'inline-block', width: 12, height: 12, border: `2px solid ${color}`,
                   borderTopColor: 'transparent', borderRadius: '50%',
                   animation: 'spin 0.6s linear infinite' }} />
-              ) : (
-                <span style={{ color }}>{icon}</span>
               )}
               {label}
             </button>
